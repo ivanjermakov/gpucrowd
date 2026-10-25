@@ -13,7 +13,6 @@ for (const row of rows) {
     survey.push({name, share})
     if (name === 'Other') break
 }
-console.log(survey)
 
 const dist = 'dist'
 await mkdir(dist, { recursive: true })
@@ -21,6 +20,29 @@ await mkdir(dist, { recursive: true })
 cp('favicon.svg', `${dist}/favicon.svg`)
 
 const template = (await readFile('index.html')).toString()
-const body = `<span>hello</span>`
+const body = `
+<table>
+<thead>
+<th>
+<td>Name</td>
+<td>Performance</td>
+<td>Share</td>
+<td>Slower than</td>
+<td>Faster than</td>
+</th>
+</thead>
+<tbody>
+${survey.map(e => `
+<tr>
+<td>${e.name}<td>
+<td>TBD<td>
+<td>${e.share}<td>
+<td>TBD<td>
+<td>TBD<td>
+</tr>
+`).join('\n')}
+</tbody>
+</table>
+`
 const html = template.replace('{body}', body)
 await writeFile(`${dist}/index.html`, html)
