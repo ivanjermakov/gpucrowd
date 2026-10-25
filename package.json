@@ -1,0 +1,13 @@
+{
+  "name": "gpucrowd",
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "watch": "find | entr npm run build",
+    "build": "node build.ts"
+  },
+  "devDependencies": {
+    "@types/node": "26.6.5",
+    "typescript": "7.0.2"
+  }
+}
